@@ -98,10 +98,9 @@ COMMIT;
 ';
 if ($connection->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
 } else {
 	$result = mysqli_query($connection, $sql);
-	printf($result);
+	printf($result . "Result");
 	
 }
 $connection->close();
