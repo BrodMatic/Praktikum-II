@@ -6,7 +6,7 @@ $dbpwd = "admin_password";
 $dbname = "praktikum";
 
 $connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname);
-$sql ="INSERT INTO uporabnik (username, email, password) VALUES ('Somebody', 'somebody@gmail.com', 'helvette');";
+$sql ="INSERT INTO `uporabnik`(`username`, `email`, `password`) VALUES ('Somebody', 'somebody@gmail.com', 'helvette');";
 //$sql ="CREATE TABLE Uporabnik(
 //    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 //    username varchar(255) NOT NULL,
