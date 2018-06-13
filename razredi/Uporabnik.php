@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 class Uporabnik {
     private $id;
     private $username;
@@ -43,7 +44,7 @@ class Uporabnik {
     }
     
     public function getUporabnikViaEmail($email){
-        require '../db_connection.php';
+        require __DIR__ . '../db_connection.php';
         $sql = "SELECT * FROM uporabnik where email='$email';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -62,7 +63,7 @@ class Uporabnik {
     }
     
     public function getUporabnikViaId($id){
-        require '../db_connection.php';
+        require __DIR__ . '../db_connection.php';
         $sql = "SELECT * FROM uporabnik where id='$id';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -81,7 +82,7 @@ class Uporabnik {
     }
     
     public function getUporabnikLogin($email, $password){
-        require '../db_connection.php';
+        require __DIR__ . '../db_connection.php';
         $sql = "SELECT * FROM uporabnik where email='$email' AND password='$password';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -101,7 +102,7 @@ class Uporabnik {
     }
   
     public function updateUporabnik($id, $var_name, $var_value){
-        require '../db_connection.php';
+        require __DIR__ . '../db_connection.php';
         $sql = "UPDATE uporabnik SET $var_name = '$var_value' WHERE id = $id;";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -116,7 +117,7 @@ class Uporabnik {
         $user_name = $user->username;
         $user_email = $user->email;
         $user_password = $user->password;
-        require '../db_connection.php';
+        require __DIR__ . '../db_connection.php';
         $sql = "INSERT INTO uporabnik (username, email, password) VALUES ('$user_name', '$user_email', '$user_password');";
         $result = mysqli_query($connection, $sql);
         if ($result === FALSE){
