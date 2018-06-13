@@ -12,7 +12,7 @@ if(isset($_SESSION['gLogout'])){
 }else{
     $site_url=$_SESSION['url'];
     $_SESSION['gLogout'] = "something";
-    header("Location: https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" . $site_url . "google_login_preset.php");
+    header("Location: https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" . $site_url . "/google_login_preset.php");
     exit();
     
 }
