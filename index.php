@@ -1,6 +1,6 @@
 <?php
 include ("menu.php");
-$link = (isset($_SERVER['HTTPS']) ? "https" : "http");
+$link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $_SESSION['url']=$link;
 ?>
 
