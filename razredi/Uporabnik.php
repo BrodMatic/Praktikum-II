@@ -44,7 +44,12 @@ class Uporabnik {
     }
     
     public function getUporabnikViaEmail($email){
-        require __DIR__ . '../db_connection.php';
+        $dbhost = getenv("MYSQL_SERVICE_HOST");
+	$dbport = getenv("MYSQL_SERVICE_PORT");
+	$dbuser = "admin_user";
+	$dbpwd = "admin_password";
+	$dbname = "praktikum";
+	$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
         $sql = "SELECT * FROM uporabnik where email='$email';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -63,7 +68,12 @@ class Uporabnik {
     }
     
     public function getUporabnikViaId($id){
-        require __DIR__ . '../db_connection.php';
+        $dbhost = getenv("MYSQL_SERVICE_HOST");
+	$dbport = getenv("MYSQL_SERVICE_PORT");
+	$dbuser = "admin_user";
+	$dbpwd = "admin_password";
+	$dbname = "praktikum";
+	$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
         $sql = "SELECT * FROM uporabnik where id='$id';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -82,7 +92,12 @@ class Uporabnik {
     }
     
     public function getUporabnikLogin($email, $password){
-        require __DIR__ . '../db_connection.php';
+        $dbhost = getenv("MYSQL_SERVICE_HOST");
+	$dbport = getenv("MYSQL_SERVICE_PORT");
+	$dbuser = "admin_user";
+	$dbpwd = "admin_password";
+	$dbname = "praktikum";
+	$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
         $sql = "SELECT * FROM uporabnik where email='$email' AND password='$password';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -102,7 +117,12 @@ class Uporabnik {
     }
   
     public function updateUporabnik($id, $var_name, $var_value){
-        require __DIR__ . '../db_connection.php';
+        $dbhost = getenv("MYSQL_SERVICE_HOST");
+	$dbport = getenv("MYSQL_SERVICE_PORT");
+	$dbuser = "admin_user";
+	$dbpwd = "admin_password";
+	$dbname = "praktikum";
+	$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
         $sql = "UPDATE uporabnik SET $var_name = '$var_value' WHERE id = $id;";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -117,7 +137,12 @@ class Uporabnik {
         $user_name = $user->username;
         $user_email = $user->email;
         $user_password = $user->password;
-        require __DIR__ . '../db_connection.php';
+        $dbhost = getenv("MYSQL_SERVICE_HOST");
+	$dbport = getenv("MYSQL_SERVICE_PORT");
+	$dbuser = "admin_user";
+	$dbpwd = "admin_password";
+	$dbname = "praktikum";
+	$connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
         $sql = "INSERT INTO uporabnik (username, email, password) VALUES ('$user_name', '$user_email', '$user_password');";
         $result = mysqli_query($connection, $sql);
         if ($result === FALSE){
