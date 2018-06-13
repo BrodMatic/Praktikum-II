@@ -6,7 +6,7 @@ $dbpwd = "admin_password";
 $dbname = "praktikum";
 
 $connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname);
-$sql ='INSERT INTO uporabnik (username, email, password) VALUES ('Somebody', 'somebody@gmail.com', 'helvette');';
+$sql ="INSERT INTO uporabnik (username, email, password) VALUES ('Somebody', 'somebody@gmail.com', 'helvette');";
 if ($connection->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
 } else {
