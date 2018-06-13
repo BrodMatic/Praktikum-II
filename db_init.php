@@ -4,6 +4,7 @@ $dbport = getenv("MYSQL_SERVICE_PORT");
 $dbuser = "admin_user";
 $dbpwd = "admin_password";
 $dbname = "praktikum";
+
 $connection = new mysqli($dbhost, $dbuser, $dbpwd, $dbname);
 $sql ='
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -99,8 +100,9 @@ if ($connection->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 } else {
-    printf("Connected to the database");
-	mysqli_query($connection, $sql);
+	$result = mysqli_query($connection, $sql);
+	printf($result);
+	
 }
 $connection->close();
 ?>
