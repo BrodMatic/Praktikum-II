@@ -48,7 +48,7 @@ class Podpisnik {
     
     //VRNE DOLOCENEGA PODPISNIKA GLEDE NA NJEGOV ID V BAZI
     public function getPodpisnikViaId($id){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT * FROM podpisnik where id='$id';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -68,7 +68,7 @@ class Podpisnik {
    
     //VRNE VSE PODPISNIKE KI SO PODPISALI NEKAJ OD DOLOECENEGA UPORABNIKA
     public function getPodpisnikViaUserId($id){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT * FROM podpisnik WHERE fk_pod_ver IN (SELECT id FROM verzija WHERE fk_ver_priv IN (SELECT id FROM privolitve WHERE fk_priv_upo = '$id'));";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -88,7 +88,7 @@ class Podpisnik {
     
     //VRNE VSE PODPISNIKE Z DOLOCENIM EMAILOM, KI SO PODPISALI NEKAJ OD DOLOCENEGA UPORABNIKA (PREDVIDOMA TRENUTNO PRIJAVLJENEGA)
     public function getPodpisnikViaUserIdAndEmail($id, $email){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT * FROM podpisnik WHERE fk_pod_ver IN (SELECT id FROM verzija WHERE fk_ver_priv IN (SELECT id FROM privolitve WHERE fk_priv_upo = '$id')) AND email = '$email';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -108,7 +108,7 @@ class Podpisnik {
     
     //VRNE PODPISNIKE DOLOCENE VERZIJE - SPECIFICIRANE V $fk kot FK_pod_priv IZ PODATKOVNE BAZE
     public function getPodpisnikViaFk($fk){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT * FROM podpisnik where FK_pod_ver='$fk';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -134,7 +134,7 @@ class Podpisnik {
         $sign_email = $sign->getEmail();
         $sign_ip = $sign->getIp();
         $sign_fk_ver = $sign->getFk_ver();
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "INSERT INTO podpisnik (email, ip_add, cas, fk_pod_ver) VALUES ('$sign_email', '$sign_ip', NOW(), '$sign_fk_ver');";
         $result = mysqli_query($connection, $sql);
         if ($result === FALSE){

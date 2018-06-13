@@ -62,13 +62,13 @@ class Checkbox {
     public function addCheckbox(Checkbox $check){
         $vrednost = $check->getCheckbox();
         $FK = $check->getFk_che_ver();
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "INSERT INTO checkbox (checkbox, FK_che_ver) VALUES ('$vrednost', '$FK');";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
     }
     public function getVseCheckboxe($fk){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT *  FROM checkbox where FK_che_ver='$fk';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);

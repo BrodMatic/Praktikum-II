@@ -39,7 +39,7 @@ class Boolbox {
     }
     
     public function getBoolboxViaFk($fk){
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "SELECT * FROM boolbox where fk_podpisnik='$fk';";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);
@@ -65,7 +65,7 @@ class Boolbox {
         $agreed = $box->getAgreed();
         $fk_checkbox = $box->getFk_checkbox();
         $fk_podpisnik = $box->getFk_podpisnik();
-        $connection = mysqli_connect("localhost", "root", "", "praktikum") OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
         $sql = "INSERT INTO boolbox (agreed, fk_checkbox, fk_podpisnik) VALUES ($agreed, '$fk_checkbox', '$fk_podpisnik');";
         $result = mysqli_query($connection, $sql);
         mysqli_close($connection);

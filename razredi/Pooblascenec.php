@@ -24,11 +24,8 @@ class Pooblascenec implements Iprivolitev {
         $ime=$pooblascenec->ime;
         $priimek=$pooblascenec->priimek;
         $naslov=$pooblascenec->naslov;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "INSERT INTO Pooblascenec (ime, priimek, naslov) VALUES ('$ime', '$priimek','$naslov');";
         $result = mysqli_query($db_server,$query);
         
@@ -38,11 +35,8 @@ class Pooblascenec implements Iprivolitev {
         $ime=$pooblascenec->ime;
         $priimek=$pooblascenec->priimek;
         $naslov=$pooblascenec->naslov;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT id FROM Pooblascenec where ime='$ime' AND priimek='$priimek' AND naslov='$naslov';";
         $result = mysqli_query($db_server, $query);
         if (!$result)
@@ -62,11 +56,8 @@ class Pooblascenec implements Iprivolitev {
     }
     public function getIzBazePoob($id){
         $isci=$id;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT * FROM Pooblascenec where id='$isci';";
         $result = mysqli_query($db_server, $query);
         if (!$result)

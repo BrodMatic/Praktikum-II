@@ -79,11 +79,8 @@ class Verzija implements Iprivolitev {
         $hramba=$verzija->hramba;
         $FKid=$verzija->FK_ver_priv;
         $FKpoob=$verzija->poob;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "INSERT INTO Verzija (verzija, text,rok_hrambe,FK_ver_priv,FK_ver_poob) VALUES ('$st', '$text','$hramba','$FKid','$FKpoob');";
         $result = mysqli_query($db_server, $query);
         $query ="SELECT id from Verzija where verzija='$st' AND text='$text' AND rok_hrambe='$hramba' AND FK_ver_priv='$FKid' AND FK_ver_poob='$FKpoob'";
@@ -101,11 +98,8 @@ class Verzija implements Iprivolitev {
     
     public function getIzBazeV($id){
         $isci=$id;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT * FROM verzija where id='$isci';";
         $result = mysqli_query($db_server, $query);
         if (!$result)

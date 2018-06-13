@@ -1,7 +1,7 @@
 <?php
 session_start();
 $sql= $_SESSION['register'];
-$connection = mysqli_connect("localhost", "root", "", "praktikum");
+require '../db_connection.php';
 $result = mysqli_query($connection, $sql);
 mysqli_close($connection);
 if ($result) {

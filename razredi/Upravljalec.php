@@ -75,11 +75,8 @@ class Upravljalec implements Iprivolitev {
         $priimek=$upravljalec->subname;
         $naslov=$upravljalec->address;
         $FK_upr_priv=$upravljalec->FK_upr_priv;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "INSERT INTO Upravljalec (ime, priimek, naslov,FK_upr_priv) VALUES ('$ime', '$priimek','$naslov','$FK_upr_priv');";
         $result = mysqli_query($db_server,$query);
         
@@ -87,11 +84,8 @@ class Upravljalec implements Iprivolitev {
     
     public function getIzBaze($idPrivolitve){
         $id=$idPrivolitve;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT * FROM Upravljalec where FK_upr_priv='$id';";
         $result = mysqli_query($db_server,$query);
         if (!$result)

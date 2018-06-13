@@ -7,12 +7,8 @@ include ("menu.php")
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "praktikum";
-  
-$db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+require '../db_connection.php';
+	$db_server = $connection;
 
 ?>
 	

@@ -33,11 +33,8 @@ class Privolitev implements Iprivolitev {
 
     public function getIzBaze($privolitev){
         $isci=$privolitev->naslov;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+       	require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT * FROM privolitve where naslov='$isci';";
         $result = mysqli_query($db_server, $query);
         if (!$result)
@@ -62,11 +59,8 @@ class Privolitev implements Iprivolitev {
     public function spremeniNaslov($privolitev){
         $id=$privolitev->id;
         $update=$privolitev->naslov;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "UPDATE privolitve SET naslov = '$update' WHERE id='$id';";
         $result = mysqli_query($db_server, $query);
     
@@ -74,11 +68,8 @@ class Privolitev implements Iprivolitev {
     
     public function getIzBazeId($id){
         $isci=$id;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "SELECT * FROM privolitve where id='$isci';";
         $result = mysqli_query($db_server, $query);
         if (!$result)
@@ -105,11 +96,8 @@ class Privolitev implements Iprivolitev {
     public function addBaza($privolitev){
         $naslov=$privolitev->naslov;
         $uporabnik=$privolitev->upor;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "praktikum";
-        $db_server = @mysqli_connect ($servername, $username, $password, $dbname) OR die ('Povezava do podatkovne baze ni uspela: ' . mysqli_connect_error() );
+        require '../db_connection.php';
+	$db_server = $connection;
         $query = "INSERT INTO privolitve (naslov, FK_priv_upo) VALUES ('$naslov', '$uporabnik');";
         $result = mysqli_query($db_server, $query);
         
